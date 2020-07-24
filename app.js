@@ -1,13 +1,20 @@
-const http = require("http");
-const routes = require("./routes");
-const requestHandler = require("./routes");
+const path = require('path');
+const express = require('express');
+const bodyParser = require('body-parser');
 
-function reqListner(req, res) {
-  requestHandler(req, res);
+const rootDir = require('./utils/path');
+const adminRoutes = require('./routes/admin');
+const shopRoutes = require('./routes/shop');
 
-  // process.exit(); // Will exit the process
-}
+const app = express();
 
-const server = http.createServer(reqListner);
+app.use(bodyParser.urlencoded());
+app.use(express.static(path.join(__dirname,'public')));
+app.use('/admin',adminRoutes);
+app.use(shopRoutes);
 
-server.listen(3000);
+app.use((req, res, next)=>{
+  res.status(400).sendFile(path.join(rootDir,'views','404.html'));
+})
+
+app.listen(3000);
