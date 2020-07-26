@@ -1,0 +1,2 @@
+const apikey = 'a21aa72a43be4612a3072427202706';
+cont mapBoxApi = 'https://api.mapbox.com/geocoding/v5/mapbox.places/bengal.json?access_token=pk.eyJ1IjoiYXNoaXNoZmVlbHMiLCJhIjoiY2tkM2hyajlzMWYwMTJxcXYybWltMHMzYSJ9.IBAdacbfAKd7HQKZ9gTkTg&limit=1'
