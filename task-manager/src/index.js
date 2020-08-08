@@ -21,6 +21,16 @@ app.post("/users", (req, res) => {
     });
 });
 
+app.get("/users", (req, res) => {
+  User.find({})
+    .then((users) => {
+      res.send(users);
+    })
+    .catch((err) => {
+      res.status(500).send();
+    });
+});
+
 app.post("/tasks", (req, res) => {
   const task = new Task(req.body);
   task
@@ -32,6 +42,21 @@ app.post("/tasks", (req, res) => {
       console.log(err);
 
       res.status(400).send(" Error Happened try Again Later");
+    });
+});
+
+app.get("/user/:id", (req, res) => {
+  const _id = req.params.id;
+  console.log(_id);
+  User.findById(_id)
+    .then((user) => {
+      if (!user) {
+        return res.status(404).send("No user Found");
+      }
+      res.send(user);
+    })
+    .catch((err) => {
+      res.status(500).send("Server Error");
     });
 });
 
