@@ -1,4 +1,5 @@
 const express = require("express");
+const bcrypt = require('bcrypt');
 const userRouter = require("../src/routes/user");
 const taskRouter = require("../src/routes/task");
 
